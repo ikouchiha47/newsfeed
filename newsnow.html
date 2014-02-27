@@ -1,0 +1,98 @@
+<!--
+You are free to copy and use this sample in accordance with the terms of the
+Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
+-->
+
+<!DOCTYPE>
+<html>
+<head>
+<title> News Times</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css" media = "screen">
+@import url(./css/mobile.min.css);
+@import url(./css/blackheader.min.css);
+@import url(./css/jquery.mobile.icons.min.css);
+@import url(./css/extras.css);
+</style>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.mobile.min.js"></script>
+<script src="//www.google.com/jsapi?key=AIzaSyA5m1Nc8ws2BbmPRwKu5gFradvD_hgq6G0" type="text/javascript"></script>
+<script type="text/javascript" src = "main.js"></script>
+
+</head>
+<body>
+<div data-role = "page" id = "mainpage">
+	<div data-role="header" data-position="inline">
+		<h1>FeedLine!</h1>
+	</div>
+	<div data-role = "content">
+		<ul data-role="listview" style = "display : inline;">
+			<li>
+			<a href ="#displaypage" class = "news" id="ndtv" data-transition ="pop" onclick="javascript : initiate(this);">NDTV</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="bbc" data-transition ="pop" onclick="javascript : initiate(this);">BBC</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="teleWorld" data-transition ="pop" onclick="javascript : initiate(this);">WORLD</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="tech" data-transition ="pop" onclick="javascript : initiate(this);">TECHCRUNCH</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="sports" data-transition ="pop" onclick="javascript : initiate(this);">SPORTS</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="cricket" data-transition ="pop" onclick="javascript : initiate(this);">CRICKET</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="indiatv" data-transition ="pop" onclick="javascript : initiate(this);">INDIATV</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="ectimes" data-transition ="pop" onclick="javascript : initiate(this);">ECONOMIC TIMES</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="ectimesEcom" data-transition ="pop" onclick="javascript : initiate(this);">ECONOMY</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="ectimesInfo" data-transition ="pop" onclick="javascript : initiate(this);">INFOTECH</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="ectimesNation" data-transition ="pop" onclick="javascript : initiate(this);">POLITICS/NATION</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="mcontrol" data-transition ="pop" onclick="javascript : initiate(this);">MONEY CONTROL</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="mcontrolGlobe" data-transition ="pop" onclick="javascript : initiate(this);">GLOBAL MARKET</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="movies" data-transition ="pop" onclick="javascript : initiate(this);">MOVIES</a>
+			</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="bolly" data-transition ="pop" onclick="javascript : initiate(this);">BOLLYWOOD</a>
+			</li>
+		</ul>
+	</div>
+	<div data-role="footer">
+		<h3>News</h3>
+	</div>
+</div>
+
+<div data-role = "page" id = "displaypage" class ="ui-content">
+	<div data-role="header" data-position="inline">
+		<h1>FeedLine!</h1>
+		<a href = "#mainpage" class = "ui-btn ui-icon-back ui-btn-icon-left">MAIN</a>
+	</div>
+	<div data-role = "main" class ="ui-content">
+		<div id = "content">
+		</div>
+	</div>
+	<div data-role="footer" class = "center-wrapper ui-content">
+		<a href = "" id ="mainsite" class = "ui-link"></a>
+	</div>
+</div>
+</body>
+</html>
+​
