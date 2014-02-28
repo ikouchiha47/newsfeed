@@ -1,42 +1,9 @@
-
+/* 
+jslint browser : true;
+*/
+'use strict';
 google.load("feeds", "1");
-var channel = "", url= "", originalurl= "";
-	select = document.getElementsByClassName('news'),
-	back = document.getElementById("return");
-
-var Cookies = function (){
-	this.createCookie = function (name,value,days) {
-		if (days) {
-			var date = new Date();
-			date.setTime(date.getTime()+(days*24*60*60*1000));
-			var expires = "; expires="+date.toGMTString();
-		} else {
-			var expires = "";
-		}
-		document.cookie = name+"="+value+expires+"; path=/";
-	};
-
-	this.readCookie = function (name) {
-		var nameEQ = name + "=";
-		var ca = document.cookie.split(';');
-		for (var i=0;i < ca.length;i++) {
-			var c = ca[i];
-			while (c.charAt(0)==' ') {
-				c = c.substring(1,c.length);
-			}
-			if (c.indexOf(nameEQ) == 0) {
-				return c.substring(nameEQ.length,c.length);
-			}
-		}
-		return null;
-	};
-
-	this.deleteCookie = function (name) {
-		createCookie(name,"",-1);
-	};
-
-};
-var cookie = new Cookies();
+var channel = "", url = "", originalurl = "", back;
 
 function setChannel(dom) {
 	channel = dom;
@@ -123,8 +90,6 @@ function setChannel(dom) {
 		originalurl = "http://entertainment.oneindia.in";
 
 	}
-	cookie.createCookie("channel",channel,0.5);
-
 
 }
 
@@ -197,16 +162,23 @@ function OnLoad() {
 	feed.load(feedLoaded);
 }
 
-function initiate(self){
-	console.log(self.id);
-	setChannel(self.id);
+
+function init(self) {
+	if(self.hasAttribute('id')) {
+        setChannel(self.id);
+    } else {
+        setChannel(self);
+        console.log("init1:"+self);
+    }
 	google.load("feeds", "1", {"callback" : OnLoad});
-	setInterval(100,initiate(cookie.readCookie("channel")));
 }
-
-
-back.addEventListener("click",cookie.deleteCookie("channel"), false);
-
+var select = document.getElementsByClassName('news');
 for(var i = 0; i < select.length; i += 1) {
-	select[i].addEventListener("click" ,initiate(select[i]), false);
+	var elem = document.getElementById(select[i].id);
+   	elem.addEventListener("click", init(elem), false);
+   	console.log(elem+".addEventListener('click',init("+elem+"),false)");
 }
+/*back = document.getElementById("return");
+back.addEventListener("click", function () {
+	localStorage.removeItem('nchannel');
+	}, false);*/
