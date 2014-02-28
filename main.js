@@ -3,7 +3,7 @@ jslint browser : true;
 */
 'use strict';
 google.load("feeds", "1");
-var channel = "", url = "", originalurl = "", back;
+var channel = "", url = "", originalurl = "", select, back;
 
 function setChannel(dom) {
 	channel = dom;
@@ -32,7 +32,7 @@ function setChannel(dom) {
 
 	}
 	if (channel == "cricket") {
-		url ="http://feeds.feedburner.com/NDTV-Cricket";
+		url = "http://feeds.feedburner.com/NDTV-Cricket";
 		originalurl = "http://www.ndtv.com/";
 
 	}
@@ -53,7 +53,7 @@ function setChannel(dom) {
 
 	}
 	if (channel == "ectimesEcom") {
-		url ="http://economictimes.indiatimes.com/rssfeeds/1373380680.cms";
+		url = "http://economictimes.indiatimes.com/rssfeeds/1373380680.cms";
 		originalurl = "http://economictimes.indiatimes.com";
 
 	}
@@ -93,27 +93,27 @@ function setChannel(dom) {
 
 }
 
-function delayMade(date){
-	var datenow , datepast, delta;
+function delayMade(date) {
+	var datenow, datepast, delta;
 	datenow = new Date().getTime();
 	datepast = new Date(date).getTime();
 	delta = Math.abs(datenow - datepast);
 	delta /= 1000;
 	return {
-days : Math.floor(delta / 86400),
-     hours : Math.floor(delta / 3600) % 24,
-     minutes : Math.floor(delta / 60) % 60,
-     seconds : delta % 60
+        days : Math.floor(delta / 86400),
+        hours : Math.floor(delta / 3600) % 24,
+        minutes : Math.floor(delta / 60) % 60,
+        seconds : delta % 60
 	};
 }
 
 function beautifyDelay(delay) {
-	var result = '', temp ='';
+	var result = '', temp = '';
 	if (delay.days > 0) {
-		temp = delay.days + "d"
-			result += temp;
+		temp = delay.days + "d";
+        result += temp;
 	}
-	if (delay.days<= 0 && delay.hours > 0) {
+	if (delay.days <= 0 && delay.hours > 0) {
 		temp = Math.round(delay.hours) + "h";
 		result += temp;
 	}
@@ -139,17 +139,17 @@ function feedLoaded(result) {
 		redirect = document.getElementById('mainsite');
 		container.innerHTML = '';
 		redirect.innerHTML = '';
-		output = '';    
+		output = '';
 
-		for (var i = 0; i < result.feed.entries.length; i++) {
+		for (i = 0; i < result.feed.entries.length; i += 1) {
 			entry = result.feed.entries[i];
 			delay = beautifyDelay(delayMade(entry.publishedDate));
-			author =(entry.author!='')?("by "+entry.author):'';
-			output += "<h3><a href='"+ entry.link + "' data-transition ='slidedown'>"+ entry.title + "</a></h3>";
-			output +=entry.contentSnippet+"<h4>- "+ author + " " + delay +" </h4><hr/>";
+			author = (entry.author !='') ? ("by "+ entry.author) : '';
+			output += "<h3><a href='" + entry.link + "' data-transition ='slidedown'>" + entry.title + "</a> </h3>";
+			output += entry.contentSnippet + "<h4> - " + author + " " + delay + " </h4> <hr/>";
 		}
 		container.innerHTML += output;
-		redirect.setAttribute("href", originalurl) ;
+		redirect.setAttribute("href", originalurl);
 		redirect.innerHTML += document.getElementById(channel).innerHTML;
 	}
 }
@@ -157,28 +157,36 @@ function feedLoaded(result) {
 function OnLoad() {
 	var feed = new google.feeds.Feed(url);
 	feed.setResultFormat(google.feeds.Feed.JSON_FORMAT);
-	feed.includeHistoricalEntries(); 
+	feed.includeHistoricalEntries();
 	feed.setNumEntries(15);
 	feed.load(feedLoaded);
 }
 
-
-function init(self) {
+function initiate(self) {
 	if(self.hasAttribute('id')) {
         setChannel(self.id);
+        //console.log(self.id);
     } else {
         setChannel(self);
-        console.log("init1:"+self);
+        //console.log(self);
     }
 	google.load("feeds", "1", {"callback" : OnLoad});
 }
-var select = document.getElementsByClassName('news');
-for(var i = 0; i < select.length; i += 1) {
-	var elem = document.getElementById(select[i].id);
-   	elem.addEventListener("click", init(elem), false);
-   	console.log(elem+".addEventListener('click',init("+elem+"),false)");
+
+function handleClick(i) {
+	select[i].onclick = function () {
+		initiate(select[i]);
+	};
 }
-/*back = document.getElementById("return");
-back.addEventListener("click", function () {
-	localStorage.removeItem('nchannel');
-	}, false);*/
+
+
+var abc = document.getElementById("mainpage");
+window.onload = function () {
+    var i;
+    select = document.getElementsByClassName('news');
+    for (i = 0; i < select.length; i += 1) {
+        handleClick(i);    
+    }
+    back = document.getElementById("goback");
+    
+};
