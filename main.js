@@ -90,7 +90,7 @@ function setChannel(dom) {
 		originalurl = "http://entertainment.oneindia.in";
 
 	}
-
+	localStorage.setItem('nchannel', channel);
 }
 
 function delayMade(date) {
@@ -160,6 +160,7 @@ function OnLoad() {
 	feed.includeHistoricalEntries();
 	feed.setNumEntries(15);
 	feed.load(feedLoaded);
+	
 }
 
 function initiate(self) {
@@ -170,23 +171,53 @@ function initiate(self) {
         setChannel(self);
         //console.log(self);
     }
-	google.load("feeds", "1", {"callback" : OnLoad});
+
+   
+    google.load("feeds", "1", {"callback" : OnLoad});
+    //OnLoad();
+	//setInterval(3000,OnLoad);
+
 }
 
 function handleClick(i) {
+	
 	select[i].onclick = function () {
 		initiate(select[i]);
 	};
 }
 
+function updateContents(){
+	var elem = document.getElementById(localStorage.getItem('nchannel'));
+	initiate(elem);
+	setInterval(6000,updateContents);
+}
+$(document).bind('pageshow', function(e, data) {
+	if ($.mobile.activePage.attr('id') == "mainpage") {
+		localStorage.clear();
+		var i;
+	    select = document.getElementsByClassName('news');
+	    for (i = 0; i < select.length; i += 1) {
+	        handleClick(i);
+	    	}
+		}
+		if ($.mobile.activePage.attr('id') == "displaypage") {
+			updateContents();
+		}
+});
 
-var abc = document.getElementById("mainpage");
-window.onload = function () {
-    var i;
+/*window.onload = function () {
+	if ($.mobile.activePage.attr('id') == "mainpage") {
+	var i;
     select = document.getElementsByClassName('news');
     for (i = 0; i < select.length; i += 1) {
-        handleClick(i);    
-    }
-    back = document.getElementById("goback");
-    
+        handleClick(i);
+    	}
+	}
+	if ($.mobile.activePage.attr('id') == "displaypage") {
+		var elem = document.getElementById(localStorage.getItem('nchannel'));
+		initiate(elem);
+	}
+    //back = document.getElementById("goback");  
+    setInterval(33,this);
 };
+*/
