@@ -11,63 +11,69 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css" media = "screen">
 @import url(./css/mobile.min.css);
-@import url(./css/blackheader.min.css);
+@import url(./css/metroui.min.css);
 @import url(./css/jquery.mobile.icons.min.css);
 @import url(./css/extras.css);
 </style>
 
 </head>
 <body>
-<div data-role = "page" id = "mainpage">
+<div data-role = 'page' id = "mainpage" class="ui-body-d">
 	<div data-role="header" data-position="inline">
 		<h1>FeedLine!</h1>
+		<a href="#themepage" class="ui-btn ui-corner-all ui-btn-right ui-icon-gear ui-btn-icon-notext" id ="theme">Settings</a>
+		
 	</div>
 	<div data-role = "content">
 		<ul data-role="listview" style = "display : inline;">
+			<li data-role = "data-divider">General </li>
 			<li>
-			<a href ="#displaypage" class = "news" id="ndtv" data-transition ="pop" value="">NDTV</a>
+			<a href ="#displaypage" class = "news" id="ndtv" data-transition ="pop" >NDTV</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="bbc" data-transition ="pop" value="">BBC</a>
+			<a href ="#displaypage" class = "news" id="bbc" data-transition ="pop" >BBC</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="teleWorld" data-transition ="pop" value="">WORLD</a>
+			<a href ="#displaypage" class = "news" id="teleWorld" data-transition ="pop" >WORLD</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="tech" data-transition ="pop" value="">TECHCRUNCH</a>
+			<a href ="#displaypage" class = "news" id="indiatv" data-transition ="pop" >INDIATV</a>
+			</li>
+			<li data-role = "data-divider">Economy</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="ectimes" data-transition ="pop" >ECONOMIC TIMES</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="sports" data-transition ="pop" value="">SPORTS</a>
+			<a href ="#displaypage" class = "news" id="ectimesEcom" data-transition ="pop" >ECONOMY</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="cricket" data-transition ="pop" value="">CRICKET</a>
+			<a href ="#displaypage" class = "news" id="ectimesInfo" data-transition ="pop" >INFOTECH</a>
+			</li>
+			<li data-role = "data-divider">Politics and Money</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="ectimesNation" data-transition ="pop" >POLITICS/NATION</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="indiatv" data-transition ="pop" value="">INDIATV</a>
+			<a href ="#displaypage" class = "news" id="mcontrol" data-transition ="pop" >MONEY CONTROL</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="ectimes" data-transition ="pop" value="">ECONOMIC TIMES</a>
+			<a href ="#displaypage" class = "news" id="mcontrolGlobe" data-transition ="pop" >GLOBAL MARKET</a>
+			</li>
+			<li data-role = "data-divider">Entertainment</li>
+			<li>
+			<a href ="#displaypage" class = "news" id="tech" data-transition ="pop" >TECHCRUNCH</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="ectimesEcom" data-transition ="pop" value="">ECONOMY</a>
+			<a href ="#displaypage" class = "news" id="sports" data-transition ="pop" >SPORTS</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="ectimesInfo" data-transition ="pop" value="">INFOTECH</a>
+			<a href ="#displaypage" class = "news" id="cricket" data-transition ="pop" >CRICKET</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="ectimesNation" data-transition ="pop" value="">POLITICS/NATION</a>
+			<a href ="#displaypage" class = "news" id="movies" data-transition ="pop" >MOVIES</a>
 			</li>
 			<li>
-			<a href ="#displaypage" class = "news" id="mcontrol" data-transition ="pop" value="">MONEY CONTROL</a>
-			</li>
-			<li>
-			<a href ="#displaypage" class = "news" id="mcontrolGlobe" data-transition ="pop" value="">GLOBAL MARKET</a>
-			</li>
-			<li>
-			<a href ="#displaypage" class = "news" id="movies" data-transition ="pop" value="">MOVIES</a>
-			</li>
-			<li>
-			<a href ="#displaypage" class = "news" id="bolly" data-transition ="pop" value="">BOLLYWOOD</a>
+			<a href ="#displaypage" class = "news" id="bolly" data-transition ="pop" >BOLLYWOOD</a>
 			</li>
 		</ul>
 	</div>
@@ -76,10 +82,11 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 	</div>
 </div>
 
-<div data-role = "page" id = "displaypage">
+<div data-role = 'page' id = "displaypage" class ="ui-body-d">
 	<div data-role="header" data-position="inline">
 		<h1>FeedLine!</h1>
-		<a href = "#mainpage" class = "ui-btn ui-icon-back ui-btn-icon-left" id ="goback">MAIN</a>
+		<a href = "#mainpage" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext" id ="goback">HOME</a>
+		<a href="#themepage" class="ui-btn ui-corner-all ui-btn-right ui-icon-gear ui-btn-icon-notext" id ="theme">Settings</a>
 	</div>
 	<div data-role = "main" class ="ui-content">
 		<div id = "content">
@@ -89,6 +96,42 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 		<a href = "" id ="mainsite" class = "ui-link"></a>
 	</div>
 </div>
+
+<div data-role = 'page' id = "themepage" class = "ui-body-d">
+	<div data-role="header" data-position="inline">
+		<h1>FeedLine!</h1>
+		<a href = "#mainpage" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext" id ="goback">HOME</a>
+	</div>
+	<div data-role = "main" class = "ui-content">
+		<div id = "content">
+		<ul data-role="listview" style = "display : inline;">
+			<li data-role="list-divider">
+				Dark Themes
+			</li>
+			<li>
+				<a href ="#" class = "themes" id="a" data-transition ="pop">Black</a>
+			</li>
+			<li>
+			<a href ="#" class = "themes" id="c" data-transition ="pop">Green</a>
+			</li>
+			<li data-role = "list-divider">
+				Light Themes
+			</li>
+			
+			<li>
+			<a href ="#" class = "themes" id="d" data-transition ="pop">Violet</a>
+			</li>
+			<li>
+			<a href ="#" class = "themes" id="e" data-transition ="pop">Black</a>
+			</li>
+		</ul>
+		</div>
+	</div>
+	<div data-role="footer" class = "center-wrapper ui-content">
+		<span>Themes</span>
+	</div>
+</div>
+
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="jquery.mobile.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi?key=AIzaSyA5m1Nc8ws2BbmPRwKu5gFradvD_hgq6G0" ></script>

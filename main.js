@@ -3,7 +3,7 @@ jslint browser : true;
 */
 'use strict';
 google.load("feeds", "1");
-var channel = "", url = "", originalurl = "", select, back;
+var channel = "", url = "", originalurl = "", select, themer, t;
 
 function setChannel(dom) {
 	channel = dom;
@@ -170,13 +170,18 @@ function initiate(self) {
     } else {
         setChannel(self);
         //console.log(self);
-    }
-
-   
+    }   
     google.load("feeds", "1", {"callback" : OnLoad});
-    //OnLoad();
-	//setInterval(3000,OnLoad);
+}
 
+$.mobile.changeTheme = function (theme) {
+	var themes = " a c d e";
+	function setTheme(csselector,themeclass,theme) {
+		$(csselector).removeClass(themes.split(" ").join(" " + themeclass + "-"))
+		.addClass(themeclass + "-" + theme)
+		.attr('data-theme',theme);
+	}
+	setTheme("[data-role='page']", "ui-body", theme);
 }
 
 function handleClick(i) {
@@ -186,15 +191,21 @@ function handleClick(i) {
 	};
 }
 
+function handleTheme(i) {
+	themer[i].onclick = function () {
+		$.mobile.changeTheme(themer[i].id);
+	}
+}
+
 function updateContents(){
 	var elem = document.getElementById(localStorage.getItem('nchannel'));
 	initiate(elem);
 	setInterval(6000,updateContents);
 }
-$(document).bind('pageshow', function(e, data) {
+$(document).bind('pagecontainershow', function(e, data) {
+	var i;
 	if ($.mobile.activePage.attr('id') == "mainpage") {
 		localStorage.clear();
-		var i;
 	    select = document.getElementsByClassName('news');
 	    for (i = 0; i < select.length; i += 1) {
 	        handleClick(i);
@@ -203,21 +214,11 @@ $(document).bind('pageshow', function(e, data) {
 		if ($.mobile.activePage.attr('id') == "displaypage") {
 			updateContents();
 		}
-});
+		if($.mobile.activePage.attr('id') == "themepage") {
+			themer = document.getElementsByClassName('themes');
+			for(i = 0; i < themer.length; i += 1) {
+				handleTheme(i);
+			}
 
-/*window.onload = function () {
-	if ($.mobile.activePage.attr('id') == "mainpage") {
-	var i;
-    select = document.getElementsByClassName('news');
-    for (i = 0; i < select.length; i += 1) {
-        handleClick(i);
-    	}
-	}
-	if ($.mobile.activePage.attr('id') == "displaypage") {
-		var elem = document.getElementById(localStorage.getItem('nchannel'));
-		initiate(elem);
-	}
-    //back = document.getElementById("goback");  
-    setInterval(33,this);
-};
-*/
+		}
+});
